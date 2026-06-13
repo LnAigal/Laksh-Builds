@@ -1,252 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JXF3NNHJG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JXF3NNHJG0');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laksh Builds</title>
+  <meta name="description" content="Laksh Builds - Collection of websites, tools, and resources built by Lakshminarayana Aigal.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Laksh Builds | Projects by Lakshminarayana Aigal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0c10;
-      --panel: #111318;
-      --muted: #c5c6c7;
-      --text: #e8e8ea;
-      --accent: #7aa2f7;
-      --border: #1f2430;
+      --primary: #00D4FF;
+      --primary-dim: rgba(0, 212, 255, 0.15);
+      --bg: #0D0D11;
+      --surface: #16161D;
+      --surface-hover: #1E1E28;
+      --border: #2A2A38;
+      --text: #F0F0F5;
+      --text-secondary: #B0B0C0;
+      --text-muted: #6B6B80;
+      --radius: 12px;
     }
 
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f7f8fb;
-        --panel: #ffffff;
-        --muted: #4b5563;
-        --text: #101827;
-        --accent: #2457e0;
-        --border: #e5e7eb;
-      }
+    [data-theme="light"] {
+      --primary: #2563EB;
+      --primary-dim: rgba(37, 99, 235, 0.12);
+      --bg: #F4F5F9;
+      --surface: #FFFFFF;
+      --surface-hover: #F0F1F6;
+      --border: #D4D5E0;
+      --text: #12121A;
+      --text-secondary: #4B4B60;
+      --text-muted: #8B8BA0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Galaxy stars */
+    .galaxy {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .galaxy-star {
+      position: absolute; background: white; border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--min-opacity, 0.2); transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Particle canvas */
+    #particle-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
     body {
-      font-family: system-ui, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      display: flex;
       min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
     }
 
-    /* Sidebar */
-    nav {
-      flex: 0 0 260px;
-      padding: 24px 16px;
-      background: var(--panel);
-      border-right: 1px solid var(--border);
-      transition: transform 0.3s ease-in-out;
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; font-family: inherit; cursor: pointer; }
+
+    ::selection { background: var(--primary); color: #fff; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem; transition: 0.3s;
+    }
+    .navbar.scrolled {
+      background: rgba(13, 13, 17, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+    }
+    [data-theme="light"] .navbar.scrolled {
+      background: rgba(244, 245, 249, 0.85);
+    }
+    .navbar-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .logo {
-      font-weight: 800;
-      font-size: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 1.35rem; font-weight: 800; color: var(--primary);
     }
-    .logo .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      color: var(--text-secondary); font-weight: 500;
+      font-size: 0.9rem; transition: color 0.2s;
     }
-    .toc {
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
-    }
-    .toc a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: var(--text);
-      border: 1px solid var(--border);
-      background: var(--panel);
-    }
-    .toc a:hover { border-color: var(--accent); }
+    .nav-links a:hover { color: var(--text); }
 
-    /* Main */
-    main {
-      flex: 1;
-      padding: 36px 24px;
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; transition: 0.2s;
     }
-    header.hero { text-align: center; margin-bottom: 30px; }
-    .title { font-size: clamp(1.5rem, 2vw, 2.2rem); }
-    .subtitle { color: var(--muted); margin: 10px 0 20px; }
+    .theme-toggle:hover { border-color: var(--primary); }
 
-    .toc-main { display: grid; gap: 16px; margin-top: 20px; }
-    .toc-main a {
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      transition: 0.2s;
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 5px; }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--text);
+      border-radius: 2px; transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Hero */
+    .hero {
+      padding: 8rem 2rem 3rem; text-align: center; max-width: 700px; margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p {
+      font-size: 1.1rem; color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .stat {
       text-align: center;
     }
-    .toc-main a:hover {
-      border-color: var(--accent);
-      background: rgba(122,162,247,0.1);
+    .stat strong {
+      display: block; font-size: 1.8rem; font-weight: 800; color: var(--primary);
     }
-    .description {
-      font-size: 0.9rem;
-      color: var(--muted);
+    .stat span {
+      font-size: 0.85rem; color: var(--text-muted);
     }
-    
-   footer {
-  text-align: center;
-  padding: 20px;
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  margin-top: 40px;
-}
 
-footer p {
-  margin: 8px 0;
-  font-size: 0.95rem;
-}
+    /* Controls */
+    .controls {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem 2rem;
+      display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;
+    }
+    .search-wrap {
+      flex: 1; min-width: 220px; position: relative;
+    }
+    .search-wrap input {
+      width: 100%; padding: 0.75rem 1rem 0.75rem 2.6rem;
+      border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
+      font-size: 0.9rem; outline: none; transition: 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--primary); }
+    .search-wrap .icon {
+      position: absolute; left: 0.9rem; top: 50%;
+      transform: translateY(-50%); color: var(--text-muted);
+      pointer-events: none; font-size: 0.95rem;
+    }
+    .filter-group {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .filter-group button {
+      padding: 0.5rem 1rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text-secondary); font-size: 0.82rem; font-weight: 500;
+      transition: 0.2s;
+    }
+    .filter-group button:hover { border-color: var(--primary); color: var(--text); }
+    .filter-group button.active {
+      background: var(--primary); border-color: var(--primary); color: #fff;
+    }
 
-footer a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-}
+    /* Projects */
+    .projects {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: 0.2s;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+    .card:hover {
+      border-color: var(--primary);
+      background: var(--surface-hover);
+      transform: translateY(-3px) !important;
+    }
+    .card.hidden { display: none; }
 
-footer a:hover {
-  text-decoration: underline;
-}
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--primary-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .card-name {
+      font-size: 1.05rem; font-weight: 700;
+    }
+    .card-desc {
+      font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;
+    }
+    .card-tags {
+      display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.15rem;
+    }
+    .card-tags span {
+      font-size: 0.7rem; font-weight: 600;
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+      background: var(--primary-dim); color: var(--primary);
+    }
+    .card-cta {
+      font-size: 0.82rem; font-weight: 600; color: var(--primary);
+      margin-top: 0.25rem;
+    }
+
+    /* No results */
+    .no-results {
+      grid-column: 1 / -1; text-align: center; padding: 3rem;
+      color: var(--text-muted);
+    }
+    .no-results h3 { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.3rem; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center;
+      color: var(--text-muted); font-size: 0.88rem;
+    }
+    footer a { color: var(--primary); font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Back to top */
+    .back-top {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--text);
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: 0.2s; z-index: 99;
+    }
+    .back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-top:hover { border-color: var(--primary); }
 
     /* Mobile */
-    .menu-btn {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--text);
-      padding: 12px;
-    }
-    @media (max-width: 900px) {
-      body { flex-direction: column; }
-      nav {
-        position: fixed;
-        top: 0; left: 0;
-        height: 100%;
-        transform: translateX(-100%);
+    @media (max-width: 768px) {
+      .navbar { padding: 0.7rem 1rem; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 260px; height: 100vh;
+        background: var(--surface); flex-direction: column;
+        padding: 5rem 2rem 2rem; gap: 1.5rem;
+        transition: right 0.3s; border-left: 1px solid var(--border);
         z-index: 1000;
       }
-      nav.active { transform: translateX(0); }
-      .menu-btn { display: block; position: absolute; top: 10px; left: 10px; }
-      main { padding: 70px 16px 20px; }
+      .nav-links.open { right: 0; }
+      .hamburger { display: flex; }
+      .nav-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+        z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s;
+      }
+      .nav-overlay.show { opacity: 1; visibility: visible; }
+
+      .hero { padding: 6rem 1.25rem 2rem; }
+      .stats { gap: 2rem; padding: 0 1.25rem 2rem; }
+      .controls { flex-direction: column; padding: 0 1.25rem 1.5rem; }
+      .search-wrap { min-width: 100%; }
+      .projects { padding: 0 1.25rem 3rem; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- <nav>
-    <div class="logo"><span class="dot"></span> Laksh Builds</div>
-    <div class="toc">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+
+  <!-- Galaxy stars -->
+  <div class="galaxy"></div>
+
+  <!-- Particles -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Mobile overlay -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">Laksh Builds</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/LnAigal" target="_blank">GitHub</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </nav> -->
+  </nav>
 
-  <main>
-    <header class="hero">
-      <h1 class="title">Laksh Builds</h1>
-      <p class="subtitle">Collection of websites and projects built by Lakshminarayana Aigal</p>
-    </header>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Built by <span>Lakshminarayana</span></h1>
+    <p>A collection of websites, tools, and resources I've built along the way.</p>
+  </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="toc-main">
+  <!-- Stats -->
+  <div class="stats" id="stats">
+    <div class="stat"><strong id="projCount">0</strong><span>Projects</span></div>
+    <div class="stat"><strong id="catCount">0</strong><span>Categories</span></div>
+    <div class="stat"><strong>2024</strong><span>Since</span></div>
+  </div>
 
-<!--NMAMIT Notes Hub-->
-        <a href="https://lnaigal.github.io/NMAMIT-Notes-Hub/" target="_blank">
-          NMAMIT Notes Hub
-          <span class="description">Your all-in-one hub for NMAMIT notes and study resources.</span>
-        </a>
+  <!-- Controls -->
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input type="text" id="search" placeholder="Search projects..." autocomplete="off">
+    </div>
+    <div class="filter-group" id="filters"></div>
+  </div>
 
-<!--Laksh-Guides-->
-        <a href="https://lnaigal.github.io/Laksh-Guides/" target="_blank">
-          Laksh Guides
-          <span class="description">Your go-to reference for coding, tech, and academic essentials.</span>
-        </a>
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="grid" id="grid"></div>
+  </section>
 
-<!--Laksh-Drops-->        
-        <a href="https://lakshdrops.onrender.com/" target="_blank">
-          Laksh Drops
-          <span class="description">A simple and efficient tool to drag and drop Files.</span>
-        </a>
+  <!-- Footer -->
+  <footer>
+    <p>Built by <a href="https://www.linkedin.com/in/lakshminarayana-aigal" target="_blank">Lakshminarayana Aigal</a> &middot; <a href="mailto:lakshwebsitedev@gmail.com">lakshwebsitedev@gmail.com</a></p>
+  </footer>
 
-<!--Laksh-Music-->        
-        <a href="https://lakshmusic.netlify.app/" target="_blank">
-          Laksh Music
-          <span class="description">A simple and efficient tool to play Music</span>
-        </a>
-      
+  <!-- Back to top -->
+  <button class="back-top" id="backTop">↑</button>
 
-<!--Laksh Builds-->
-<a href="https://lnaigal.github.io/Laksh-Buids/" target="_blank">
-          Laksh Builds
-          <span class="description">Collection of websites and projects built by Lakshminarayana Aigal</span>
-        </a>
+  <script>
+    const projects = [
+      { name: "NMAMIT Notes Hub", desc: "Your all-in-one hub for NMAMIT notes and study resources.", url: "https://lnaigal.github.io/NMAMIT-Notes-Hub/", tags: ["Education", "Notes"], icon: "📚" },
+      { name: "Laksh Guides", desc: "Your go-to reference for coding, tech, and academic essentials.", url: "https://lnaigal.github.io/Laksh-Guides/", tags: ["Reference", "Coding"], icon: "📖" },
+      { name: "Laksh Drops", desc: "A simple and efficient tool to drag and drop files.", url: "https://lakshdrops.onrender.com/", tags: ["Tool", "Utility"], icon: "📂" },
+      { name: "Laksh Music", desc: "A simple and efficient tool to play music.", url: "https://lakshmusic.netlify.app/", tags: ["Music", "Entertainment"], icon: "🎵" },
+      { name: "Laksh Builds", desc: "Collection of websites and projects built by Lakshminarayana Aigal.", url: "https://lnaigal.github.io/Laksh-Buids/", tags: ["Landing", "Portfolio"], icon: "🏗️" },
+      { name: "Task Master", desc: "A simple and efficient tool to organize, track, and manage your daily tasks.", url: "https://taskmasterhere.netlify.app/", tags: ["Tool", "Productivity"], icon: "✅" },
+      { name: "Laksh LabCode", desc: "Lab programs with PDFs and code for students.", url: "https://lnaigal.github.io/Laksh-LabCode", tags: ["Education", "Coding"], icon: "💻" },
+      { name: "Laksh Notes 2.0", desc: "2nd year AIML notes and resources.", url: "https://lnaigal.github.io/Laksh-Notes-2.0/", tags: ["Education", "Notes"], icon: "📝" },
+      { name: "Laksh Portfolio", desc: "Lakshminarayana Aigal's Portfolio.", url: "https://lnaigal.github.io/Laksh-Portfolio", tags: ["Portfolio", "Personal"], icon: "👤" },
+      { name: "Laksh Learns", desc: "A curated directory of online courses from top educational providers.", url: "https://lnaigal.github.io/Laksh-Learns/", tags: ["Education", "Learning"], icon: "🌐" }
+    ];
 
-<!--Task Master-->
-<a href="https://taskmasterhere.netlify.app/" target="_blank">
-          Task Master
-          <span class="description">A simple and efficient tool to organize, track, and manage your daily tasks.</span>
-        </a>
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const filters = document.getElementById('filters');
+    let activeTag = 'All';
 
+    function render(list) {
+      grid.innerHTML = '';
+      document.getElementById('projCount').textContent = list.length;
+      if (!list.length) {
+        grid.innerHTML = '<div class="no-results"><h3>No projects found</h3></div>';
+        return;
+      }
+      list.forEach((p, i) => {
+        const a = document.createElement('a');
+        a.href = p.url;
+        a.target = '_blank';
+        a.className = 'card';
+        a.style.animationDelay = `${i * 0.04}s`;
+        a.innerHTML = `
+          <div class="card-header">
+            <div class="card-icon">${p.icon}</div>
+            <div class="card-name">${p.name}</div>
+          </div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+          <div class="card-cta">Visit →</div>`;
+        grid.appendChild(a);
+      });
+    }
 
+    function filter() {
+      const q = search.value.toLowerCase();
+      const list = projects.filter(p =>
+        (p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) &&
+        (activeTag === 'All' || p.tags.includes(activeTag))
+      );
+      render(list);
+    }
 
+    search.addEventListener('input', filter);
 
-<a href="https://lnaigal.github.io/Laksh-LabCode" target="_blank">
-          Laksh LabCode
-          <span class="description">Lab programs with PDFs and code for students.</span>
-        </a>
+    function buildFilters() {
+      const tags = ['All', ...new Set(projects.flatMap(p => p.tags))].sort();
+      filters.innerHTML = tags.map(t =>
+        `<button class="${t === activeTag ? 'active' : ''}" data-tag="${t}">${t}</button>`
+      ).join('');
+      filters.addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTag = btn.dataset.tag;
+        filter();
+      });
+    }
 
+    /* Navbar */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', scrollY > 40));
 
-<a href="https://lnaigal.github.io/Laksh-Notes-2.0/" target="_blank">
-          Laksh Notes 2.0
-          <span class="description">2nd year AIML notes and resources.</span>
-        </a>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('nav-overlay');
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    function openMenu() {
+      hamburger.classList.add('active');
+      navLinks.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    hamburger.addEventListener('click', () => navLinks.classList.contains('open') ? closeMenu() : openMenu());
+    overlay.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
+    /* Galaxy stars */
+    function initGalaxy() {
+      const g = document.querySelector('.galaxy');
+      if (!g) return;
+      for (let i = 0; i < 200; i++) {
+        const s = document.createElement('div');
+        s.className = 'galaxy-star';
+        const sz = Math.random() * 2.5 + 0.5;
+        s.style.width = sz + 'px'; s.style.height = sz + 'px';
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        s.style.setProperty('--min-opacity', (Math.random() * 0.3 + 0.1));
+        s.style.animationDelay = Math.random() * 5 + 's';
+        g.appendChild(s);
+      }
+    }
 
-<!--Laksh Portfolio-->
-<a href="https://lnaigal.github.io/Laksh-Portfolio" target="_blank">
-          Laksh Portfolio
-          <span class="description">Lakshminarayana Aigal's Portfolio.</span>
-        </a>
+    /* Particles */
+    function initParticles() {
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let w, h;
+      function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
 
-</div>
-    </section>
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * w; this.y = Math.random() * h;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.5;
+          this.speedY = (Math.random() - 0.5) * 0.5;
+          this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > w) this.speedX *= -1; if (this.y < 0 || this.y > h) this.speedY *= -1; }
+        draw() {
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
 
-    <footer id="contact">
-      <p>Created by <a href="https://www.linkedin.com/in/lakshminarayana-aigal" target="_blank">Lakshminarayana Aigal</a></p>
-      <p>Contact: <a href="mailto:lakshwebsitedev@gmail.com">lakshwebsitedev@gmail.com</a></p>
-    </footer>
-  </main>
+      const count = Math.min(50, Math.floor(w * h / 15000));
+      particles = Array.from({ length: count }, () => new Particle());
+      let frame = 0;
+      function connect() {
+        for (let i = 0; i < particles.length; i++)
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+            const d = dx * dx + dy * dy;
+            if (d < 22500) {
+              ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0, 212, 255, ${0.05 * (1 - Math.sqrt(d) / 150)})`;
+              ctx.lineWidth = 0.5; ctx.stroke();
+            }
+          }
+      }
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => { p.update(); p.draw(); });
+        if (frame++ % 2 === 0) connect();
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    /* Theme */
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('lb-theme');
+    if (saved === 'light') { document.documentElement.setAttribute('data-theme', 'light'); toggle.textContent = '☀️'; }
+    toggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      document.documentElement.setAttribute('data-theme', isLight ? '' : 'light');
+      toggle.textContent = isLight ? '🌙' : '☀️';
+      localStorage.setItem('lb-theme', isLight ? '' : 'light');
+    });
+
+    /* Back to top */
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => backTop.classList.toggle('show', scrollY > 500));
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* Categories count */
+    const tags = new Set(projects.flatMap(p => p.tags));
+    document.getElementById('catCount').textContent = tags.size;
+
+    /* Init */
+    initGalaxy();
+    initParticles();
+    buildFilters();
+    render(projects);
+  </script>
 </body>
 </html>
