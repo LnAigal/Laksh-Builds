@@ -402,7 +402,6 @@
       <span class="icon">🔍</span>
       <input type="text" id="search" placeholder="Search projects..." autocomplete="off">
     </div>
-    <div class="filter-group" id="filters"></div>
   </div>
 
   <!-- Projects -->
@@ -437,7 +436,6 @@
 
     const grid = document.getElementById('grid');
     const search = document.getElementById('search');
-    const filters = document.getElementById('filters');
     let activeTag = 'All';
 
     function render(list) {
@@ -500,21 +498,6 @@
     }
 
     search.addEventListener('input', filter);
-
-    function buildFilters() {
-      const tags = ['All', ...new Set(projects.flatMap(p => p.tags))].sort();
-      filters.innerHTML = tags.map(t =>
-        `<button class="${t === activeTag ? 'active' : ''}" data-tag="${t}">${t}</button>`
-      ).join('');
-      filters.addEventListener('click', e => {
-        const btn = e.target.closest('button');
-        if (!btn) return;
-        filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeTag = btn.dataset.tag;
-        filter();
-      });
-    }
 
     /* Navbar */
     const navbar = document.getElementById('navbar');
@@ -632,7 +615,6 @@
     /* Init */
     initGalaxy();
     initParticles();
-    buildFilters();
     render(projects);
   </script>
 </body>
