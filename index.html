@@ -6,6 +6,7 @@
   <meta name="description" content="Laksh Builds - Collection of websites, tools, and resources built by Lakshminarayana Aigal.">
   <meta name="theme-color" content="#0A0A0A">
   <title>Laksh Builds | Projects by Lakshminarayana Aigal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -196,7 +197,8 @@
       flex-direction: column;
       gap: 0.65rem;
       transition: 0.2s;
-      cursor: pointer;
+      cursor: default;
+      position: relative;
       opacity: 0;
       transform: translateY(12px);
       animation: fadeUp 0.4s ease forwards;
@@ -238,6 +240,65 @@
     .card-cta {
       font-size: 0.82rem; font-weight: 600; color: var(--primary);
       margin-top: 0.25rem;
+    }
+
+    /* Sections */
+    .section-header {
+      grid-column: 1 / -1;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header:first-child { margin-top: 0; }
+    .section-header h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    /* Featured badge */
+    .badge-featured {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; padding: 0.2rem 0.5rem; border-radius: 4px;
+      background: linear-gradient(135deg, #FFD700, #F59E0B);
+      color: #1a1a2e; z-index: 1;
+    }
+
+    /* Featured card highlight */
+    .card-featured {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary), 0 4px 20px rgba(0, 212, 255, 0.08);
+    }
+    .card-featured:hover {
+      box-shadow: 0 0 0 1px var(--primary), 0 8px 30px rgba(0, 212, 255, 0.15);
+    }
+    [data-theme="light"] .card-featured {
+      box-shadow: 0 0 0 1px var(--primary), 0 4px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Card actions */
+    .card-actions {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-top: auto; padding-top: 0.5rem;
+    }
+    .btn-visit, .btn-github {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.9rem;
+      border-radius: 8px; transition: 0.2s;
+    }
+    .btn-visit {
+      background: var(--primary); color: #fff;
+    }
+    .btn-visit:hover {
+      opacity: 0.85;
+    }
+    .btn-github {
+      background: var(--surface); color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-github:hover {
+      border-color: var(--primary); color: var(--text);
     }
 
     /* No results */
@@ -358,17 +419,20 @@
   <button class="back-top" id="backTop">↑</button>
 
   <script>
+    const sectionOrder = ['Featured', 'Educational Platforms', 'Utilities & Apps', 'Personal'];
+
     const projects = [
-      { name: "NMAMIT Notes Hub", desc: "Your all-in-one hub for NMAMIT notes and study resources.", url: "https://lnaigal.github.io/NMAMIT-Notes-Hub/", tags: ["Education", "Notes"], icon: "📚" },
-      { name: "Laksh Guides", desc: "Your go-to reference for coding, tech, and academic essentials.", url: "https://lnaigal.github.io/Laksh-Guides/", tags: ["Reference", "Coding"], icon: "📖" },
-      { name: "Laksh Drops", desc: "A simple and efficient tool to drag and drop files.", url: "https://lakshdrops.onrender.com/", tags: ["Tool", "Utility"], icon: "📂" },
-      { name: "Laksh Music", desc: "A simple and efficient tool to play music.", url: "https://lakshmusic.netlify.app/", tags: ["Music", "Entertainment"], icon: "🎵" },
-      { name: "Laksh Builds", desc: "Collection of websites and projects built by Lakshminarayana Aigal.", url: "https://lnaigal.github.io/Laksh-Buids/", tags: ["Landing", "Portfolio"], icon: "🏗️" },
-      { name: "Task Master", desc: "A simple and efficient tool to organize, track, and manage your daily tasks.", url: "https://taskmasterhere.netlify.app/", tags: ["Tool", "Productivity"], icon: "✅" },
-      { name: "Laksh LabCode", desc: "Lab programs with PDFs and code for students.", url: "https://lnaigal.github.io/Laksh-LabCode", tags: ["Education", "Coding"], icon: "💻" },
-      { name: "Laksh Notes 2.0", desc: "2nd year AIML notes and resources.", url: "https://lnaigal.github.io/Laksh-Notes-2.0/", tags: ["Education", "Notes"], icon: "📝" },
-      { name: "Laksh Portfolio", desc: "Lakshminarayana Aigal's Portfolio.", url: "https://lnaigal.github.io/Laksh-Portfolio", tags: ["Portfolio", "Personal"], icon: "👤" },
-      { name: "Laksh Learns", desc: "A curated directory of online courses from top educational providers.", url: "https://lnaigal.github.io/Laksh-Learns/", tags: ["Education", "Learning"], icon: "🌐" }
+      { name: "Consumer Shield", desc: "Award-winning browser extension that detects dark patterns, privacy risks, and deceptive website practices. Maps findings to India's DPDP Act 2023 and helps users make informed privacy decisions. Built during a national-level hackathon at SMVIT Bangalore.", url: null, github: "https://github.com/LnAigal/Consumer-Shield", tags: ["Cybersecurity", "AI", "Browser Extension"], icon: "🛡️", section: "Featured", featured: true },
+      { name: "AgriVision", desc: "Hackathon-winning AI solution for agriculture that leverages computer vision and machine learning to solve real-world farming challenges. Secured 3rd Place at Matrix Fusion 4.0.", url: null, github: "https://github.com/LnAigal/AgriVision", tags: ["AI", "Computer Vision", "Agriculture"], icon: "🌾", section: "Featured", featured: true },
+      { name: "Laksh Learns", desc: "A curated directory of online courses from top educational providers.", url: "https://lnaigal.github.io/Laksh-Learns/", github: "https://github.com/LnAigal/Laksh-Learns", tags: ["Education", "Learning"], icon: "🌐", section: "Featured", featured: true },
+      { name: "Task Master", desc: "A simple and efficient tool to organize, track, and manage your daily tasks.", url: "https://taskmasterhere.netlify.app/", github: null, tags: ["Tool", "Productivity"], icon: "✅", section: "Featured", featured: true },
+      { name: "NMAMIT Notes Hub", desc: "Your all-in-one hub for NMAMIT notes and study resources.", url: "https://lnaigal.github.io/NMAMIT-Notes-Hub/", github: "https://github.com/LnAigal/NMAMIT-Notes-Hub", tags: ["Education", "Notes"], icon: "📚", section: "Educational Platforms" },
+      { name: "Laksh Notes 2.0", desc: "2nd year AIML notes and resources.", url: "https://lnaigal.github.io/Laksh-Notes-2.0/", github: "https://github.com/LnAigal/Laksh-Notes-2.0", tags: ["Education", "Notes"], icon: "📝", section: "Educational Platforms" },
+      { name: "Laksh LabCode", desc: "Lab programs with PDFs and code for students.", url: "https://lnaigal.github.io/Laksh-LabCode", github: "https://github.com/LnAigal/Laksh-LabCode", tags: ["Education", "Coding"], icon: "💻", section: "Educational Platforms" },
+      { name: "Laksh Guides", desc: "Your go-to reference for coding, tech, and academic essentials.", url: "https://lnaigal.github.io/Laksh-Guides/", github: "https://github.com/LnAigal/Laksh-Guides", tags: ["Reference", "Coding"], icon: "📖", section: "Educational Platforms" },
+      { name: "Laksh Drops", desc: "A simple and efficient tool to drag and drop files.", url: "https://lakshdrops.onrender.com/", github: null, tags: ["Tool", "Utility"], icon: "📂", section: "Utilities & Apps" },
+      { name: "Laksh Music", desc: "A simple and efficient tool to play music.", url: "https://lakshmusic.netlify.app/", github: null, tags: ["Music", "Entertainment"], icon: "🎵", section: "Utilities & Apps" },
+      { name: "Laksh Portfolio", desc: "Lakshminarayana Aigal's Portfolio.", url: "https://lnaigal.github.io/Laksh-Portfolio", github: "https://github.com/LnAigal/Laksh-Portfolio", tags: ["Portfolio", "Personal"], icon: "👤", section: "Personal" }
     ];
 
     const grid = document.getElementById('grid');
@@ -378,26 +442,51 @@
 
     function render(list) {
       grid.innerHTML = '';
-      document.getElementById('projCount').textContent = list.length;
+      document.getElementById('projCount').textContent = projects.length;
       if (!list.length) {
         grid.innerHTML = '<div class="no-results"><h3>No projects found</h3></div>';
         return;
       }
-      list.forEach((p, i) => {
-        const a = document.createElement('a');
-        a.href = p.url;
-        a.target = '_blank';
-        a.className = 'card';
-        a.style.animationDelay = `${i * 0.04}s`;
-        a.innerHTML = `
-          <div class="card-header">
-            <div class="card-icon">${p.icon}</div>
-            <div class="card-name">${p.name}</div>
-          </div>
-          <div class="card-desc">${p.desc}</div>
-          <div class="card-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
-          <div class="card-cta">Visit →</div>`;
-        grid.appendChild(a);
+      const grouped = {};
+      sectionOrder.forEach(s => grouped[s] = []);
+      list.forEach(p => {
+        if (grouped[p.section]) grouped[p.section].push(p);
+      });
+      let globalIdx = 0;
+      sectionOrder.forEach(section => {
+        const items = grouped[section];
+        if (!items.length) return;
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        header.innerHTML = `<h2>${section}</h2>`;
+        grid.appendChild(header);
+        items.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'card' + (p.featured ? ' card-featured' : '');
+          card.style.animationDelay = `${globalIdx * 0.04}s`;
+          let html = '';
+          if (p.featured) {
+            html += `<div class="badge-featured">Featured</div>`;
+          }
+          html += `
+            <div class="card-header">
+              <div class="card-icon">${p.icon}</div>
+              <div class="card-name">${p.name}</div>
+            </div>
+            <div class="card-desc">${p.desc}</div>
+            <div class="card-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+            <div class="card-actions">`;
+          if (p.url) {
+            html += `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn-visit">Visit →</a>`;
+          }
+          if (p.github) {
+            html += `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="btn-github">GitHub</a>`;
+          }
+          html += `</div>`;
+          card.innerHTML = html;
+          grid.appendChild(card);
+          globalIdx++;
+        });
       });
     }
 
