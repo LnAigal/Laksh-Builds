@@ -609,8 +609,8 @@
     backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     /* Categories count */
-    const tags = new Set(projects.flatMap(p => p.tags));
-    document.getElementById('catCount').textContent = tags.size;
+    const cats = new Set(projects.map(p => p.section));
+    document.getElementById('catCount').textContent = cats.size;
 
     /* Init */
     initGalaxy();
