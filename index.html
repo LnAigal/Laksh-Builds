@@ -626,7 +626,8 @@
     /* Theme */
     const toggle = document.getElementById('themeToggle');
     const saved = localStorage.getItem('lb-theme');
-    if (saved === 'light') { document.documentElement.setAttribute('data-theme', 'light'); toggle.textContent = '☀️'; }
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (saved === 'light' || (!saved && prefersLight)) { document.documentElement.setAttribute('data-theme', 'light'); toggle.textContent = '☀️'; }
     toggle.addEventListener('click', () => {
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       document.documentElement.setAttribute('data-theme', isLight ? '' : 'light');
