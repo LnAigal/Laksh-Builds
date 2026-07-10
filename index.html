@@ -552,7 +552,8 @@
     function initGalaxy() {
       const g = document.querySelector('.galaxy');
       if (!g) return;
-      for (let i = 0; i < 200; i++) {
+      const starCount = window.innerWidth < 768 ? 60 : 200;
+      for (let i = 0; i < starCount; i++) {
         const s = document.createElement('div');
         s.className = 'galaxy-star';
         const sz = Math.random() * 2.5 + 0.5;
