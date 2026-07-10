@@ -609,12 +609,17 @@
             }
           }
       }
+      let animId;
       function animate() {
         ctx.clearRect(0, 0, w, h);
         particles.forEach(p => { p.update(); p.draw(); });
         if (frame++ % 2 === 0) connect();
-        requestAnimationFrame(animate);
+        animId = requestAnimationFrame(animate);
       }
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) { cancelAnimationFrame(animId); animId = null; }
+        else if (!animId) animate();
+      });
       animate();
     }
 
