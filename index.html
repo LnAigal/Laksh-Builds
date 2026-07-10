@@ -335,6 +335,21 @@
     .back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
     .back-top:hover { border-color: var(--primary); }
 
+    /* Screen reader only */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: fixed; top: -100%; left: 1rem; z-index: 9999;
+      background: var(--primary); color: #fff; padding: 0.6rem 1.2rem;
+      border-radius: 0 0 8px 8px; font-size: 0.85rem; font-weight: 600;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+
     /* Mobile */
     @media (max-width: 768px) {
       .navbar { padding: 0.7rem 1rem; }
@@ -364,11 +379,13 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
   <!-- Galaxy stars -->
   <div class="galaxy"></div>
 
   <!-- Particles -->
-  <canvas id="particle-canvas"></canvas>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
   <!-- Mobile overlay -->
   <div class="nav-overlay" id="nav-overlay"></div>
@@ -388,6 +405,8 @@
     </div>
   </nav>
 
+  <main id="main-content">
+
   <!-- Hero -->
   <section class="hero">
     <h1>Built by <span>Lakshminarayana</span></h1>
@@ -405,7 +424,7 @@
   <div class="controls">
     <div class="search-wrap">
       <span class="icon">🔍</span>
-      <input type="text" id="search" placeholder="Search projects..." autocomplete="off">
+      <label for="search" class="sr-only">Search projects</label><input type="text" id="search" placeholder="Search projects..." autocomplete="off">
     </div>
   </div>
 
@@ -413,6 +432,8 @@
   <section class="projects" id="projects">
     <div class="grid" id="grid"></div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
