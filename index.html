@@ -5,10 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Explore web apps, learning platforms, and practical tools built by Lakshminarayana Aigal.">
+  <meta name="theme-color" content="#f2efe6">
   <meta property="og:title" content="Laksh Builds — Digital projects by Lakshminarayana Aigal">
   <meta property="og:description" content="Web apps, learning platforms, and practical tools made to be useful and easy to use.">
+  <meta property="og:url" content="https://lnaigal.github.io/Laksh-Builds/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lnaigal.github.io/Laksh-Builds/assets/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Lakshminarayana Aigal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Laksh Builds — Digital projects by Lakshminarayana Aigal">
+  <meta name="twitter:description" content="Web apps, learning platforms, and practical tools made to be useful and easy to use.">
+  <meta name="twitter:image" content="https://lnaigal.github.io/Laksh-Builds/assets/og-cover.jpg">
   <title>Laksh Builds — Digital projects by Lakshminarayana Aigal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23201d18'/><text x='50' y='52' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='58' fill='%23f2efe6'>L</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -102,7 +113,6 @@
       .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
     }
     @media (max-width: 480px) {
-      .site-header nav a:last-child { display: none; }
       .hero { min-height: min(560px, calc(100svh - 64px)); grid-template-columns: 1fr; align-content: center; }
       .hero-intro { grid-column: 1; grid-row: 1; max-width: 17rem; }
       .hero-profile { grid-column: 1; grid-row: 2; justify-self: start; width: 112px; margin: .25rem 0 .5rem .3rem; box-shadow: 7px 7px 0 var(--rule); }
@@ -150,6 +160,7 @@
       background: linear-gradient(0deg, rgba(20, 19, 17, .62), transparent 34%);
     }
     .visual-window { display: none; }
+    .project-visual-label { position: relative; z-index: 2; max-width: 92%; color: #fff; font-size: .78rem; line-height: 1.3; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); }
     @media (max-width: 760px) {
       .site-header { min-height: 68px; }
       .logo { font-size: .88rem; }
@@ -183,7 +194,7 @@
       <div class="hero-topline" id="top">
         <p class="hero-intro">I’m Lakshminarayana Aigal—a developer building useful digital experiences for learning, creating, and everyday life.</p>
         <figure class="hero-profile">
-          <img src="assets/myimg.jpeg" alt="Lakshminarayana Aigal outdoors" draggable="false" fetchpriority="high">
+          <img src="assets/myimg.webp" alt="Lakshminarayana Aigal outdoors" width="1000" height="562" draggable="false" fetchpriority="high">
         </figure>
         <h1 class="hero-title"><span>Made for</span><span>real life.</span></h1>
       </div>
@@ -201,31 +212,31 @@
       </div>
       <div class="project-grid">
         <a class="project-card" href="https://fireverse-os.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Fireverse OS">
-          <div class="project-visual" style="--visual:#8b7962"><img src="assets/fireverse-os-website.png" alt="Fireverse OS desktop interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">A desktop in your browser.</span></div>
+          <div class="project-visual" style="--visual:#8b7962"><img src="assets/fireverse-os-website.webp" width="1200" height="675" decoding="async" alt="Fireverse OS desktop interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">A desktop in your browser.</span></div>
           <div class="project-meta"><h3 class="project-name">Fireverse OS</h3><span class="project-tags">Web-based operating system · Apps and utilities</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://addons.mozilla.org/en-US/firefox/addon/fireverse-os/" target="_blank" rel="noopener noreferrer" aria-label="Visit Fireverse OS Extension">
-          <div class="project-visual" style="--visual:#737568"><img src="assets/fireverse-os-extension.png" alt="Fireverse OS browser extension interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Quick access to Fireverse.</span></div>
+          <div class="project-visual" style="--visual:#737568"><img src="assets/fireverse-os-extension.webp" width="1200" height="675" decoding="async" alt="Fireverse OS browser extension interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Quick access to Fireverse.</span></div>
           <div class="project-meta"><h3 class="project-name">Fireverse Extension</h3><span class="project-tags">Firefox add-on · OS integration</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Learns/" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Learns">
-          <div class="project-visual" style="--visual:#a28b6e"><img src="assets/laksh-learns.png" alt="Laksh Learns course discovery website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Discover your next course.</span></div>
+          <div class="project-visual" style="--visual:#a28b6e"><img src="assets/laksh-learns.webp" width="1200" height="675" decoding="async" alt="Laksh Learns course discovery website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Discover your next course.</span></div>
           <div class="project-meta"><h3 class="project-name">Laksh Learns</h3><span class="project-tags">Curated online courses · Education</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/NMAMIT-Notes-Hub/" target="_blank" rel="noopener noreferrer" aria-label="Visit NMAMIT Notes Hub">
-          <div class="project-visual" style="--visual:#8c9788"><img src="assets/nmamit-notes-hub.png" alt="NMAMIT Notes Hub study resource website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Study resources, together.</span></div>
+          <div class="project-visual" style="--visual:#8c9788"><img src="assets/nmamit-notes-hub.webp" width="1200" height="675" decoding="async" alt="NMAMIT Notes Hub study resource website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Study resources, together.</span></div>
           <div class="project-meta"><h3 class="project-name">NMAMIT Notes Hub</h3><span class="project-tags">Notes · Study resources for NMAMIT</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Guides/" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Guides">
-          <div class="project-visual" style="--visual:#b1a28b"><img src="assets/laksh-guides.png" alt="Laksh Guides technical reference website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Clear answers, less searching.</span></div>
+          <div class="project-visual" style="--visual:#b1a28b"><img src="assets/laksh-guides.webp" width="1200" height="675" decoding="async" alt="Laksh Guides technical reference website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Clear answers, less searching.</span></div>
           <div class="project-meta"><h3 class="project-name">Laksh Guides</h3><span class="project-tags">Coding · Technology · Academic references</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://send-here.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit SendHere">
-          <div class="project-visual" style="--visual:#777a70"><img src="assets/send-here.png" alt="SendHere file sharing website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Send a file. Skip the signup.</span></div>
+          <div class="project-visual" style="--visual:#777a70"><img src="assets/send-here.webp" width="1200" height="675" decoding="async" alt="SendHere file sharing website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Send a file. Skip the signup.</span></div>
           <div class="project-meta"><h3 class="project-name">SendHere</h3><span class="project-tags">Share files with a six-character access key · No sign-up</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Portfolio" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Portfolio">
-          <div class="project-visual" style="--visual:#a08a70"><img src="assets/laksh-portfolio.png" alt="Lakshminarayana Aigal personal portfolio" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">My work, in one place.</span></div>
+          <div class="project-visual" style="--visual:#a08a70"><img src="assets/laksh-portfolio.webp" width="1200" height="675" decoding="async" alt="Lakshminarayana Aigal personal portfolio" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">My work, in one place.</span></div>
           <div class="project-meta"><h3 class="project-name">Personal Portfolio</h3><span class="project-tags">About · Projects · Contact</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <article class="project-card">
@@ -241,7 +252,7 @@
     <span class="footer-credit">© <span id="year"></span> Lakshminarayana Aigal</span>
     <div class="footer-contact" aria-label="Contact links">
       <a href="https://www.instagram.com/ln_aigal/" target="_blank" rel="noopener noreferrer">Instagram @ln_aigal</a>
-      <a href="mailto:email@lnaigaldev@gmail.com">email@lnaigaldev@gmail.com</a>
+      <a href="mailto:lnaigaldev@gmail.com">lnaigaldev@gmail.com</a>
     </div>
     <button class="footer-back" id="backToTop" type="button">Back to top ↑</button>
   </footer>
