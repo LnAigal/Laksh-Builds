@@ -5,19 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Explore web apps, learning platforms, and practical tools built by Lakshminarayana Aigal.">
+  <meta name="author" content="Lakshminarayana Aigal">
+  <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f2efe6">
   <meta property="og:title" content="Laksh Builds — Digital projects by Lakshminarayana Aigal">
   <meta property="og:description" content="Web apps, learning platforms, and practical tools made to be useful and easy to use.">
   <meta property="og:url" content="https://lnaigal.github.io/Laksh-Builds/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Laksh Builds">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://lnaigal.github.io/Laksh-Builds/assets/og-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Lakshminarayana Aigal">
+  <meta property="og:image:type" content="image/jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Laksh Builds — Digital projects by Lakshminarayana Aigal">
   <meta name="twitter:description" content="Web apps, learning platforms, and practical tools made to be useful and easy to use.">
   <meta name="twitter:image" content="https://lnaigal.github.io/Laksh-Builds/assets/og-cover.jpg">
+  <meta name="twitter:image:alt" content="Lakshminarayana Aigal">
   <title>Laksh Builds — Digital projects by Lakshminarayana Aigal</title>
   <link rel="canonical" href="https://lnaigal.github.io/Laksh-Builds/">
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzUwJyBmaWxsPScjMjAxZDE4Jy8+PHRleHQgeD0nNTAnIHk9JzUyJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkb21pbmFudC1iYXNlbGluZT0nY2VudHJhbCcgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nNTgnIGZpbGw9JyNmMmVmZTYnPkw8L3RleHQ+PC9zdmc+">
@@ -74,19 +80,11 @@
     .section-heading p { max-width: 14rem; color: var(--muted); font-size: .82rem; }
     .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
     .project-card { display: flex; min-width: 0; flex-direction: column; }
-    .project-visual { position: relative; display: flex; min-height: clamp(180px, 21vw, 290px); align-items: flex-end; overflow: hidden; padding: 1rem; background: var(--visual, #8d887b); }
+    .project-visual { position: relative; display: flex; min-height: clamp(180px, 21vw, 290px); align-items: flex-end; overflow: hidden; padding: 1rem; }
     .project-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: saturate(.9); transition: transform .6s ease; }
     .project-card:hover .project-visual img { transform: scale(1.06); }
     .project-visual::before { position: absolute; inset: 0; background: linear-gradient(145deg, transparent 0 42%, rgba(24,22,18,.28)), radial-gradient(circle at 76% 18%, rgba(250,237,204,.4), transparent 18%); content: ''; z-index: 1; transition: transform .6s ease; }
     .project-card:hover .project-visual::before { transform: scale(1.08); }
-    .visual-window { position: absolute; inset: 12% 10%; overflow: hidden; border: 1px solid rgba(255,255,255,.55); background: rgba(242,239,230,.86); box-shadow: 0 14px 40px rgba(32,29,24,.18); transform: rotate(-2deg); transition: transform .5s ease; z-index: 0; }
-    .project-card:hover .visual-window { transform: rotate(0) scale(1.025); }
-    .visual-window::before { position: absolute; top: 0; right: 0; left: 0; height: 13%; border-bottom: 1px solid rgba(32,29,24,.12); background: repeating-linear-gradient(90deg, transparent 0 8%, rgba(32,29,24,.35) 8% 9%, transparent 9% 12%); content: ''; }
-    .visual-window::after { position: absolute; inset: 20% 8% 10%; background: linear-gradient(90deg, rgba(32,29,24,.9) 0 37%, transparent 37%), linear-gradient(0deg, #b6a58d 0 44%, transparent 44% 53%, #d3c8b7 53%); content: ''; }
-    .project-card:nth-child(2n) .visual-window { transform: rotate(2deg); }
-    .project-card:nth-child(2n) .visual-window::after { background: linear-gradient(135deg, #4d554c 0 45%, transparent 45%), linear-gradient(0deg, #d0c7b9 0 40%, transparent 40% 49%, #c3b39c 49%); }
-    .project-card:nth-child(3n) .visual-window::after { background: linear-gradient(90deg, #4d6050 0 25%, transparent 25% 30%, #718273 30% 60%, transparent 60%), linear-gradient(0deg, #d5c7ae 0 42%, transparent 42% 52%, #8d887b 52%); }
-    .project-card:nth-child(4n) .visual-window::after { background: linear-gradient(90deg, #2e3740 0 28%, transparent 28% 33%, #455761 33% 61%, transparent 61%), linear-gradient(0deg, #b9c1bd 0 42%, transparent 42% 52%, #e1ddd1 52%); }
     .project-meta { display: grid; grid-template-columns: 1fr auto; gap: .5rem; padding: .8rem 0 1.25rem; border-bottom: 1px solid var(--rule); }
     .project-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
     .project-tags { grid-column: 1; color: var(--muted); font-size: .7rem; }
@@ -96,7 +94,7 @@
     .footer-credit { color: var(--ink); font-weight: 500; }
     .footer-contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .55rem 1.5rem; }
     .footer-contact a { text-decoration: underline; text-underline-offset: .2em; }
-    .footer-contact a:hover, .footer-back:hover { text-decoration: underline; }
+    .footer-back:hover { text-decoration: underline; }
     .footer-back { padding: .35rem 0; border: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 500; white-space: nowrap; cursor: pointer; }
     .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 20; padding: .7rem 1rem; background: var(--ink); color: var(--paper); }
     .skip-link:focus { top: 1rem; }
@@ -161,7 +159,6 @@
       z-index: 1;
       background: linear-gradient(0deg, rgba(20, 19, 17, .62), transparent 34%);
     }
-    .visual-window { display: none; }
     .project-visual-label { position: relative; z-index: 2; max-width: 92%; padding: .28rem .5rem; background: rgba(20, 19, 17, .72); color: #fff; font-size: .78rem; line-height: 1.3; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); }
     @media (max-width: 760px) {
       .site-header { min-height: 68px; }
@@ -184,10 +181,10 @@
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="logo" href="#" aria-label="Laksh Builds home"><span class="logo-mark" aria-hidden="true">L</span>Laksh Builds</a>
+    <a class="logo" href="#top" aria-label="Laksh Builds home"><span class="logo-mark" aria-hidden="true">L</span>Laksh Builds</a>
     <nav>
       <a href="#works">Works</a>
-      <a href="https://github.com/LnAigal" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href="https://github.com/LnAigal" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
@@ -214,35 +211,35 @@
       </div>
       <div class="project-grid">
         <a class="project-card" href="https://fireverse-os.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Fireverse OS">
-          <div class="project-visual" style="--visual:#8b7962"><img src="assets/fireverse-os-website.webp" width="1200" height="675" decoding="async" alt="Fireverse OS desktop interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">A desktop in your browser.</span></div>
+          <div class="project-visual"><img src="assets/fireverse-os-website.webp" width="1200" height="675" decoding="async" alt="Fireverse OS desktop interface" loading="lazy"><span class="project-visual-label">A desktop in your browser.</span></div>
           <div class="project-meta"><h3 class="project-name">Fireverse OS</h3><span class="project-tags">Web-based operating system · Apps and utilities</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://addons.mozilla.org/en-US/firefox/addon/fireverse-os/" target="_blank" rel="noopener noreferrer" aria-label="Visit Fireverse OS Extension">
-          <div class="project-visual" style="--visual:#737568"><img src="assets/fireverse-os-extension.webp" width="1200" height="675" decoding="async" alt="Fireverse OS browser extension interface" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Quick access to Fireverse.</span></div>
+          <div class="project-visual"><img src="assets/fireverse-os-extension.webp" width="1200" height="675" decoding="async" alt="Fireverse OS browser extension interface" loading="lazy"><span class="project-visual-label">Quick access to Fireverse.</span></div>
           <div class="project-meta"><h3 class="project-name">Fireverse Extension</h3><span class="project-tags">Firefox add-on · OS integration</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Learns/" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Learns">
-          <div class="project-visual" style="--visual:#a28b6e"><img src="assets/laksh-learns.webp" width="1200" height="675" decoding="async" alt="Laksh Learns course discovery website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Discover your next course.</span></div>
+          <div class="project-visual"><img src="assets/laksh-learns.webp" width="1200" height="675" decoding="async" alt="Laksh Learns course discovery website" loading="lazy"><span class="project-visual-label">Discover your next course.</span></div>
           <div class="project-meta"><h3 class="project-name">Laksh Learns</h3><span class="project-tags">Curated online courses · Education</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/NMAMIT-Notes-Hub/" target="_blank" rel="noopener noreferrer" aria-label="Visit NMAMIT Notes Hub">
-          <div class="project-visual" style="--visual:#8c9788"><img src="assets/nmamit-notes-hub.webp" width="1200" height="675" decoding="async" alt="NMAMIT Notes Hub study resource website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Study resources, together.</span></div>
+          <div class="project-visual"><img src="assets/nmamit-notes-hub.webp" width="1200" height="675" decoding="async" alt="NMAMIT Notes Hub study resource website" loading="lazy"><span class="project-visual-label">Study resources, together.</span></div>
           <div class="project-meta"><h3 class="project-name">NMAMIT Notes Hub</h3><span class="project-tags">Notes · Study resources for NMAMIT</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Guides/" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Guides">
-          <div class="project-visual" style="--visual:#b1a28b"><img src="assets/laksh-guides.webp" width="1200" height="675" decoding="async" alt="Laksh Guides technical reference website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Clear answers, less searching.</span></div>
+          <div class="project-visual"><img src="assets/laksh-guides.webp" width="1200" height="675" decoding="async" alt="Laksh Guides technical reference website" loading="lazy"><span class="project-visual-label">Clear answers, less searching.</span></div>
           <div class="project-meta"><h3 class="project-name">Laksh Guides</h3><span class="project-tags">Coding · Technology · Academic references</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://send-here.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit SendHere">
-          <div class="project-visual" style="--visual:#777a70"><img src="assets/send-here.webp" width="1200" height="675" decoding="async" alt="SendHere file sharing website" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">Send a file. Skip the signup.</span></div>
+          <div class="project-visual"><img src="assets/send-here.webp" width="1200" height="675" decoding="async" alt="SendHere file sharing website" loading="lazy"><span class="project-visual-label">Send a file. Skip the signup.</span></div>
           <div class="project-meta"><h3 class="project-name">SendHere</h3><span class="project-tags">Share files with a six-character access key · No sign-up</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <a class="project-card" href="https://lnaigal.github.io/Laksh-Portfolio" target="_blank" rel="noopener noreferrer" aria-label="Visit Laksh Portfolio">
-          <div class="project-visual" style="--visual:#a08a70"><img src="assets/laksh-portfolio.webp" width="1200" height="675" decoding="async" alt="Lakshminarayana Aigal personal portfolio" loading="lazy"><div class="visual-window"></div><span class="project-visual-label">My work, in one place.</span></div>
+          <div class="project-visual"><img src="assets/laksh-portfolio.webp" width="1200" height="675" decoding="async" alt="Lakshminarayana Aigal personal portfolio" loading="lazy"><span class="project-visual-label">My work, in one place.</span></div>
           <div class="project-meta"><h3 class="project-name">Personal Portfolio</h3><span class="project-tags">About · Projects · Contact</span><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
         <article class="project-card">
-          <div class="project-visual" style="--visual:#777d70"><span class="project-visual-label">Spot deceptive design patterns.</span></div>
+          <div class="project-visual"><span class="project-visual-label">Spot deceptive design patterns.</span></div>
           <div class="project-meta"><h3 class="project-name">Consumer Shield</h3><span class="project-tags">Detects dark patterns and privacy risks · DPDP Act 2023 · Hackathon project</span></div>
         </article>
       </div>
@@ -256,7 +253,7 @@
       <a href="https://www.instagram.com/ln_aigal/" target="_blank" rel="noopener noreferrer">Instagram @ln_aigal</a>
       <a href="mailto:lnaigaldev@gmail.com">lnaigaldev@gmail.com</a>
     </nav>
-    <a class="footer-back" id="backToTop" href="#top">Back to top ↑</a>
+    <a class="footer-back" id="backToTop" href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
